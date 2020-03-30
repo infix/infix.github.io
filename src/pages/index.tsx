@@ -24,7 +24,7 @@ const IndexPage = () => (
 
     <div className="flex flex-col m-auto">
       <h1 className="text-white text-center">
-        <span className="block text-4xl">Hi, I'm Amr</span>
+        <span className="block text-4xl mb-3">Hi, I'm Amr</span>
         <SwitchingTextComponent strings={strings} duration={2} />
       </h1>
 
