@@ -1,0 +1,16 @@
+.CodeMirror-line, .CodeMirror-cursor {
+  margin-left: 2rem !important;
+}
+
+.topBar {
+  height: auto !important;
+}
+
+.variable-editor {
+  display: none !important;
+}
+
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  display: none !important;
+}

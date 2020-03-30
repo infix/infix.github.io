@@ -13,7 +13,7 @@ const IndexPage = () => (
 
       <div className="mx-auto text-center text-gray-100">
         <Link className="block underline text-blue-500" to="/resume/">Resume</Link>
-        <Link className="block underline text-blue-500" to="/resume/">Skills</Link>
+        <Link className="block underline text-blue-500" to="/skills/">Skills</Link>
         <Link className="block underline text-blue-500" to="/resume/">Projects</Link>
       </div>
     </div>
