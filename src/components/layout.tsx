@@ -8,7 +8,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
-import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
