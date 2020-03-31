@@ -1,4 +1,4 @@
-.CodeMirror-line, .CodeMirror-cursor {
+.CodeMirror-line, .CodeMirror-cursor, .CodeMirror-selected {
   margin-left: 2rem !important;
 }
 
@@ -13,4 +13,316 @@
 .CodeMirror-foldgutter-open,
 .CodeMirror-foldgutter-folded {
   display: none !important;
+}
+
+.doc-explorer-title-bar {
+  height: 100% !important;
+}
+
+.search-box-icon {
+  margin-left: 5px;
+}
+
+:root {
+  /*
+    Colors are based on emacs doom's vibrant theme
+    https://raw.githubusercontent.com/hlissner/emacs-doom-themes/screenshots/doom-vibrant.png
+  */
+
+  --bg: #242730;
+  --bg-alt: #2a2e38;
+  --base0: #1c1f24;
+  --base1: #1c1f24;
+  --base2: #21272d;
+  --base3: #23272e;
+  --base4: #484854;
+  --base5: #62686E;
+  --base6: #757B80;
+  --base7: #9ca0a4;
+  --base8: #DFDFDF;
+  --fg: #bbc2cf;
+  --fg-alt: #5D656B;
+
+  --grey: var(--base4);
+  --red: #ff665c;
+  --orange: #e69055;
+  --green: #7bc275;
+  --teal: #4db5bd;
+  --yellow: #FCCE7B;
+  --blue: #51afef;
+  --dark-blue: #1f5582;
+  --magenta: #C57BDB;
+  --violet: #a991f1;
+  --cyan: #5cEfFF;
+  --dark-cyan: #6A8FBF;
+  --pink: deeppink;
+
+  --execute-btn-bg: var(--bg);
+  --execute-btn-fill: var(--blue);
+  --execute-btn-border: 1px solid rgb(91, 98, 107);
+}
+
+/* THEME */
+.CodeMirror {
+  background: var(--bg) !important;
+}
+
+.CodeMirror .CodeMirror-cursor {
+  border-left-color: var(--red);
+}
+
+.CodeMirror-gutter-elt {
+  color: var(--blue);
+}
+
+.graphiql-container .doc-explorer-contents, .graphiql-container .history-contents {
+  background-color: var(--bg);
+  border: none;
+}
+
+.graphiql-container .toolbar-button {
+  background: var(--bg) !important;
+  box-shadow: none !important;
+  color: var(--base6) !important;
+  border: 1px solid var(--base2) !important;
+}
+
+.graphiql-container .result-window .CodeMirror-gutters {
+  background: var(--base0);
+  border: none !important;
+}
+
+.graphiql-container .resultWrap {
+  border-left: none;
+}
+
+.graphiql-container .topBar {
+  background: var(--bg-alt);
+  border-color: var(--bg-alt);
+}
+
+.graphiql-container .docExplorerHide {
+  color: var(--base6);
+}
+
+.graphiql-container .doc-explorer-title, .graphiql-container .history-title, .doc-explorer-back {
+  color: var(--base7) !important;
+}
+
+.graphiql-container .doc-explorer {
+  background: var(--bg-alt);
+}
+
+.graphiql-container .Wrap, .graphiql-container .historyPaneWrap {
+  box-shadow: none;
+}
+
+.graphiql-container .docExplorerShow {
+  border-left: none;
+}
+
+.graphiql-container .docExplorerShow, .graphiql-container .historyShow {
+  background: var(--bg-alt);
+  border: none;
+  color: var(--fg);
+}
+
+.graphiql-container .docExplorerShow:before, .graphiql-container .doc-explorer-back:before {
+  border-color: var(--fg);
+}
+
+.graphiql-container .search-box {
+  margin: auto auto 10px auto;
+  border: none;
+}
+
+.graphiql-container .search-box input {
+  background: var(--bg);
+  padding-left: 28px;
+}
+
+.graphiql-container .search-box .search-box-clear,
+.graphiql-container .search-box .search-box-clear:hover {
+  background: var(--bg);
+}
+
+.graphiql-container .search-box:before {
+  color: var(--fg);
+  font-size: 21px;
+  left: 8px;
+}
+
+.graphiql-container, .graphiql-container button, .graphiql-container input {
+  color: var(--fg);
+}
+
+.CodeMirror-gutters {
+  border: none !important;
+  background-color: var(--bg-alt);
+}
+
+.graphiql-container .execute-button {
+  background: var(--execute-btn-bg) !important;
+  border: var(--execute-btn-border);
+  box-shadow: none !important;
+  fill: var(--execute-btn-fill);
+}
+
+.graphiql-container .execute-options > li.selected,
+.graphiql-container .toolbar-menu-items > li.hover,
+.graphiql-container .toolbar-menu-items > li:active,
+.graphiql-container .toolbar-menu-items > li:hover,
+.graphiql-container .toolbar-select-options > li.hover,
+.graphiql-container .toolbar-select-options > li:active,
+.graphiql-container .toolbar-select-options > li:hover,
+.graphiql-container .history-contents > p:hover,
+.graphiql-container .history-contents > p:active {
+  background: var(--base4);
+}
+
+.graphiql-container .doc-category-title {
+  border-bottom: 1px solid var(--base6);
+  color: var(--fg);
+}
+
+.field-name {
+  color: var(--green) !important;
+}
+
+.type-name {
+  color: var(--violet) !important;
+}
+
+.cm-property {
+  color: var(--magenta);
+}
+
+.cm-string {
+  color: var(--red);
+}
+
+.cm-variable {
+  color: var(--base8);
+}
+
+.cm-attribute {
+  color: var(--cyan);
+}
+
+.cm-def {
+  color: var(--orange);
+}
+
+.cm-keyword {
+  color: var(--blue);
+}
+
+.cm-punctuation {
+  color: var(--green);
+}
+
+.CodeMirror-matchingbracket {
+  color: var(--cyan) !important;
+}
+
+.keyword {
+  color: var(--blue) !important;
+}
+
+.arg-name {
+  color: var(--pink);
+}
+
+.graphiql-container .doc-category-item {
+  color: var(--blue);
+}
+
+a {
+  color: var(--violet);
+}
+
+.CodeMirror-lint-tooltip {
+  background: var(--bg) !important;
+  color: var(--red);
+}
+
+.CodeMirror-lint-message-error {
+  color: var(--fg) !important;
+}
+
+.cm-atom {
+  color: var(--magenta);
+}
+
+.CodeMirror-hints {
+  background: var(--bg-alt);
+  box-shadow: 0 16px 13px -10px rgba(0, 0, 0, 0.3);
+}
+
+.CodeMirror-hint {
+  border-top: solid 1px var(--bg-alt);
+  color: var(--blue);
+}
+
+.CodeMirror-hint-information {
+  border-top: solid 1px var(--base1);
+}
+
+li.CodeMirror-hint-active {
+  background-color: var(--bg-alt);
+  border-top-color: var(--base2);
+  color: var(--cyan);
+}
+
+.CodeMirror-hint-information .content {
+  color: var(--base7);
+}
+
+.CodeMirror-selected {
+  background: var(--bg-alt) !important;
+}
+
+.graphiql-container .arg-name {
+  color: var(--pink);
+}
+
+.docExplorerResizer {
+  background: var(--base0);
+  width: 4px !important;
+}
+
+.CodeMirror-info {
+  background: var(--bg-alt);
+}
+
+.CodeMirror-info .info-description {
+  color: var(--fg);
+}
+
+.CodeMirror-search-label {
+  color: var(--blue);
+}
+
+.CodeMirror-dialog.CodeMirror-dialog-top {
+  border-color: var(--fg-alt);
+}
+
+.CodeMirror-search-hint {
+  color: var(--base7) !important;
+}
+
+.CodeMirror-search-field {
+  border-color: var(--blue) !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--bg)
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--fg-alt)
 }
