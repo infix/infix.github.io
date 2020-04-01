@@ -360,3 +360,7 @@ li.CodeMirror-hint-active {
 .graphiql-container :focus {
   outline: none;
 }
+
+li.CodeMirror-hint:hover {
+  color: var(--green);
+}
