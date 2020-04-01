@@ -88,6 +88,11 @@ const SkillsPage = () => {
     return resizeObserver.disconnect
   }, [prettifyRef])
 
+  useEffect(() => {
+    const btn = document.querySelector<HTMLButtonElement>("div.execute-button-wrap > button")
+    if (btn) btn.click()
+  }, [])
+
   return (
     <div className="h-screen w-screen">
       <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
