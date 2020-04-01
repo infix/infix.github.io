@@ -326,3 +326,33 @@ li.CodeMirror-hint-active {
 ::-webkit-scrollbar-thumb {
   background-color: var(--fg-alt)
 }
+
+.custom-prettify-button {
+  position: fixed;
+  background: none !important;
+  border: none !important;
+  bottom: 0.5rem;
+  z-index: 5;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  animation: ease-in fade-in 600ms;
+}
+
+.custom-prettify-button .toolbar-button {
+  outline: none;
+  font-weight: bold;
+  background: none !important;
+  color: var(--blue) !important;
+  opacity: 0.8 !important;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
