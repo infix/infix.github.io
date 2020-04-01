@@ -14,10 +14,9 @@ GraphiQL.Logo = () => (
   </Link>
 )
 
-// TODO replace this with a proper fetcher
 const fetcher = async (graphQLParams: any) => {
   const data = await fetch(
-    "https://swapi-graphql.netlify.com/.netlify/functions/index",
+    process.env.GRAPHQL_API!,
     {
       method: "POST",
       headers: {
@@ -30,6 +29,33 @@ const fetcher = async (graphQLParams: any) => {
   )
   return data.json().catch(() => data.text())
 }
+
+const query = `{
+  me {
+    name
+    email
+    location
+    phone
+    jobs {
+      position
+      startDate
+      endDate
+      description
+      company
+    }
+    skills(top: 5) {
+      name
+      proficiency
+    }
+    projects {
+      name
+      description
+      technologies
+      link
+    }
+  }
+}
+`
 
 const SkillsPage = () => {
   const graphiqlRef = useRef<typeof GraphiQL>()
@@ -64,7 +90,7 @@ const SkillsPage = () => {
 
   return (
     <div className="h-screen w-screen">
-      <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query='' fetcher={fetcher}>
+      <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
         <GraphiQL.Toolbar>
           <div ref={prettifyRef as any} className="custom-prettify-button">
             <GraphiQL.Button
