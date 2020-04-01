@@ -30,6 +30,7 @@
     "@types/react-dom": "^16.9.5",
     "@types/react-helmet": "^5.0.15",
     "gatsby-plugin-postcss": "^2.2.1",
+    "gh-pages": "^2.2.0",
     "prettier": "^1.19.1",
     "tailwindcss": "^1.2.0",
     "typescript": "^3.8.3"
@@ -42,6 +43,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "deploy": "gatsby build && gh-pages -d public -b master",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
