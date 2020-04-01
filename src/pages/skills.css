@@ -356,3 +356,7 @@ li.CodeMirror-hint-active {
     opacity: 1;
   }
 }
+
+.graphiql-container :focus {
+  outline: none;
+}
