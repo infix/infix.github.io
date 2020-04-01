@@ -16,6 +16,8 @@ const strings = [
   "And I'm in love with NixOS",
   "And I secretly think that OCaml is cool",
   "And Amr is short for Adaptive Multi-Rate audio codec",
+  "And we don't support your browser for best viewing experience we recommend you use internet explorer 3",
+  "And that skills page took a depressing amount of time to make 😭",
 ]
 
 const IndexPage = () => (
@@ -25,7 +27,9 @@ const IndexPage = () => (
     <div className="flex flex-col m-auto">
       <h1 className="text-white text-center">
         <span className="block text-4xl mb-3">Hi, I'm Amr</span>
-        <SwitchingTextComponent strings={strings} duration={2} />
+        <div className="md:max-w-3xl">
+          <SwitchingTextComponent strings={strings} duration={2} />
+        </div>
       </h1>
 
       <div className="mt-3 mx-auto text-center text-gray-100">
