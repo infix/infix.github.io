@@ -163,7 +163,7 @@
 
 .graphiql-container .execute-button {
   background: var(--execute-btn-bg) !important;
-  border: var(--execute-btn-border);
+  outline: none;
   box-shadow: none !important;
   fill: var(--execute-btn-fill);
 }
