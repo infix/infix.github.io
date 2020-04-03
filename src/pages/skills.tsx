@@ -4,6 +4,7 @@ import GraphiQL from "graphiql"
 import "graphiql/graphiql.css"
 import "./skills.css"
 import { Link } from "gatsby"
+import { ErrorBoundary } from "../components/ErrorBoundary"
 
 GraphiQL.Logo = () => (
   <Link className={"h-full"} to="/">
@@ -94,19 +95,25 @@ const SkillsPage = () => {
   }, [])
 
   return (
-    <div className="h-screen w-screen">
-      <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
-        <GraphiQL.Toolbar>
-          <div ref={prettifyRef as any} className="custom-prettify-button">
-            <GraphiQL.Button
-              onClick={handleClickPrettifyButton}
-              label="{ } Prettify"
-              title="Prettify Query (Shift-Ctrl-P)"
-            />
-          </div>
-        </GraphiQL.Toolbar>
-      </GraphiQL>
-    </div>
+    <ErrorBoundary onError={() => {
+      // clearly not the most elegant solution but fix the issue where
+      // GraphiQL would throw when navigating
+      window.location.href = "/"
+    }}>
+      <div className="h-screen w-screen">
+        <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
+          <GraphiQL.Toolbar>
+            <div ref={prettifyRef as any} className="custom-prettify-button">
+              <GraphiQL.Button
+                onClick={handleClickPrettifyButton}
+                label="{ } Prettify"
+                title="Prettify Query (Shift-Ctrl-P)"
+              />
+            </div>
+          </GraphiQL.Toolbar>
+        </GraphiQL>
+      </div>
+    </ErrorBoundary>
   )
 }
 
