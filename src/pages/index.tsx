@@ -28,7 +28,7 @@ const IndexPage = () => (
       <h1 className="text-white text-center">
         <span className="block text-4xl mb-3">Hi, I'm Amr</span>
         <div className="md:max-w-3xl">
-          <SwitchingTextComponent strings={strings} duration={2} />
+          <SwitchingTextComponent strings={strings} duration={10} />
         </div>
       </h1>
 
