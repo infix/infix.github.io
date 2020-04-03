@@ -4,7 +4,6 @@ import GraphiQL from "graphiql"
 import "graphiql/graphiql.css"
 import "./skills.css"
 import { Link } from "gatsby"
-import { ErrorBoundary } from "../components/ErrorBoundary"
 
 GraphiQL.Logo = () => (
   <Link className={"h-full"} to="/">
@@ -58,9 +57,11 @@ const query = `{
 }
 `
 
+
 const SkillsPage = () => {
   const graphiqlRef = useRef<typeof GraphiQL>()
   const prettifyRef = useRef<HTMLDivElement>()
+  const resizeObserverRef = useRef<any>()
 
   const handleClickPrettifyButton = () => {
     const editor = graphiqlRef.current.getQueryEditor()
@@ -71,22 +72,25 @@ const SkillsPage = () => {
   }
 
   useEffect(() => {
+    if (resizeObserverRef.current)
+      resizeObserverRef.current.disconnect()
+
     const editor = document.querySelector("#gatsby-focus-wrapper div.queryWrap")!
 
     // @ts-ignore ignoring since typescript as of this moment doesn't have
-    const resizeObserver: any = new ResizeObserver(() => {
+    resizeObserverRef.current = new ResizeObserver(() => {
       if (!prettifyRef || !prettifyRef.current)
         return
 
       const prettifyBtnWidth = prettifyRef.current!.getBoundingClientRect().width
-      const editorWidth = editor.getBoundingClientRect().width
+      const editorWidth = editor && editor.getBoundingClientRect().width
       const padding = 10
       prettifyRef.current!.style.left = `${editorWidth - prettifyBtnWidth - padding}px`
     })
 
-    resizeObserver.observe(editor)
+    resizeObserverRef.current.observe(editor)
 
-    return resizeObserver.disconnect
+    return () => resizeObserverRef?.current?.disconnect()
   }, [prettifyRef])
 
   useEffect(() => {
@@ -95,25 +99,19 @@ const SkillsPage = () => {
   }, [])
 
   return (
-    <ErrorBoundary onError={() => {
-      // clearly not the most elegant solution but fix the issue where
-      // GraphiQL would throw when navigating
-      window.location.href = "/"
-    }}>
-      <div className="h-screen w-screen">
-        <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
-          <GraphiQL.Toolbar>
-            <div ref={prettifyRef as any} className="custom-prettify-button">
-              <GraphiQL.Button
-                onClick={handleClickPrettifyButton}
-                label="{ } Prettify"
-                title="Prettify Query (Shift-Ctrl-P)"
-              />
-            </div>
-          </GraphiQL.Toolbar>
-        </GraphiQL>
-      </div>
-    </ErrorBoundary>
+    <div className="h-screen w-screen">
+      <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
+        <GraphiQL.Toolbar>
+          <div ref={prettifyRef as any} className="custom-prettify-button">
+            <GraphiQL.Button
+              onClick={handleClickPrettifyButton}
+              label="{ } Prettify"
+              title="Prettify Query (Shift-Ctrl-P)"
+            />
+          </div>
+        </GraphiQL.Toolbar>
+      </GraphiQL>
+    </div>
   )
 }
 
