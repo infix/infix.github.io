@@ -4,9 +4,10 @@ import GraphiQL from "graphiql"
 import "graphiql/graphiql.css"
 import "./skills.css"
 import { Link } from "gatsby"
+import tw from "twin.macro"
 
 GraphiQL.Logo = () => (
-  <Link className={"h-full"} to="/">
+  <Link to="/">
     <button style={{ border: "none", height: "100%", background: "none" }}
             className="docExplorerShow">
       back
@@ -57,6 +58,7 @@ const query = `{
 }
 `
 
+const Wrapper: any = tw.div`h-screen w-screen`
 
 const SkillsPage = () => {
   const graphiqlRef = useRef<typeof GraphiQL>()
@@ -99,7 +101,7 @@ const SkillsPage = () => {
   }, [])
 
   return (
-    <div className="h-screen w-screen">
+    <Wrapper>
       <GraphiQL ref={graphiqlRef} style={{ height: "100vh" }} query={query} fetcher={fetcher}>
         <GraphiQL.Toolbar>
           <div ref={prettifyRef as any} className="custom-prettify-button">
@@ -111,7 +113,7 @@ const SkillsPage = () => {
           </div>
         </GraphiQL.Toolbar>
       </GraphiQL>
-    </div>
+    </Wrapper>
   )
 }
 

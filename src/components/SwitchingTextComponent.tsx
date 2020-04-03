@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import tw from "twin.macro"
 
 function randomElement<T>(array: readonly T[]): T {
   return array[Math.floor(Math.random() * array.length)]
@@ -8,6 +9,8 @@ type Props = {
   readonly duration?: number,
   readonly strings: string[]
 }
+
+const Wrapper: any = tw.div`text-2xl mx-auto text-gray-300 sm:max-w-full`
 
 export const SwitchingTextComponent: React.FC<Props> = ({ duration = 5, strings }) => {
   const [text, setText] = useState(randomElement(strings))
@@ -22,9 +25,5 @@ export const SwitchingTextComponent: React.FC<Props> = ({ duration = 5, strings 
     return () => clearInterval(interval)
   })
 
-  return (
-    <div className="text-2xl mx-auto text-gray-300 max-w-10 sm:max-w-full">
-      {text}
-    </div>
-  )
+  return (<Wrapper> {text} </Wrapper>)
 }

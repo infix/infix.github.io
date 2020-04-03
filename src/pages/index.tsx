@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
 import { SwitchingTextComponent } from "../components/SwitchingTextComponent"
+import tw from "twin.macro"
 
 const strings = [
   "And I'm a software engineer",
@@ -20,25 +21,25 @@ const strings = [
   "And that skills page took a depressing amount of time to make 😭",
 ]
 
+const Wrapper: any = tw.div`bg-gray-900 h-screen w-screen flex`
+
 const IndexPage = () => (
-  <div className="bg-gray-900 min-h-screen min-w-screen flex">
+  <Wrapper>
     <SEO title="Home" />
 
-    <div className="flex flex-col m-auto">
-      <h1 className="text-white text-center">
-        <span className="block text-4xl mb-3">Hi, I'm Amr</span>
-        <div className="md:max-w-3xl">
-          <SwitchingTextComponent strings={strings} duration={10} />
-        </div>
+    <div tw="flex flex-col m-auto">
+      <h1 tw="text-white text-center">
+        <span tw="block text-4xl mb-3">Hi, I'm Amr</span>
+        <SwitchingTextComponent strings={strings} duration={10} />
       </h1>
 
-      <div className="mt-3 mx-auto text-center text-gray-100">
-        <Link className="block underline text-blue-500" to="/resume/">Resume</Link>
-        <Link className="block underline text-blue-500" to="/skills/">Skills</Link>
-        <Link className="block underline text-blue-500" to="/resume/">Projects</Link>
+      <div tw="mt-3 mx-auto text-center text-gray-100">
+        <Link tw="block underline text-blue-500" to="/resume/">Resume</Link>
+        <Link tw="block underline text-blue-500" to="/skills/">Skills</Link>
+        <Link tw="block underline text-blue-500" to="/resume/">Projects</Link>
       </div>
     </div>
-  </div>
+  </Wrapper>
 )
 
 export default IndexPage
