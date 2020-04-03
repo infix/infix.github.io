@@ -315,18 +315,6 @@ li.CodeMirror-hint-active {
   border-color: var(--blue) !important;
 }
 
-::-webkit-scrollbar-track {
-  background-color: var(--bg)
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--fg-alt)
-}
-
 .custom-prettify-button {
   position: fixed;
   background: none !important;
