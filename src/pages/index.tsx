@@ -1,8 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
-import SEO from "../components/seo"
-import { SwitchingTextComponent } from "../components/SwitchingTextComponent"
+import { AppTheme, Layout } from "../components/Layout"
+import { useTheme } from "emotion-theming"
 import tw from "twin.macro"
+import styled from "@emotion/styled"
+import { SwitchingTextComponent } from "../components/SwitchingTextComponent"
+import { css } from "@emotion/core"
+import { ThemeSwitcher } from "../components/ThemeSwitcher"
+
 
 const strings = [
   "And I'm a software engineer",
@@ -21,25 +26,37 @@ const strings = [
   "And that skills page took a depressing amount of time to make 😭",
 ]
 
-const Wrapper: any = tw.div`bg-gray-900 h-screen w-screen flex`
 
-const IndexPage = () => (
-  <Wrapper>
-    <SEO title="Home" />
+const Wrapper: any = styled.div`
+  ${tw`h-screen w-screen flex`}
+  
+  ${(props: any) => css`background: ${props.theme.theme.colors.bg}`}
+ `
 
-    <div tw="flex flex-col m-auto">
-      <h1 tw="text-white text-center">
-        <span tw="block text-4xl mb-3">Hi, I'm Amr</span>
-        <SwitchingTextComponent strings={strings} duration={10} />
-      </h1>
+const IndexPage = () => {
+  const { theme } = useTheme<AppTheme>()
+  const { primary, fg } = theme.colors
+  return (
+    <Wrapper>
+      <ThemeSwitcher />
 
-      <div tw="mt-3 mx-auto text-center text-gray-100">
-        <Link tw="block underline text-blue-500" to="/resume/">Resume</Link>
-        <Link tw="block underline text-blue-500" to="/skills/">Skills</Link>
-        <Link tw="block underline text-blue-500" to="/resume/">Projects</Link>
+      <div tw="flex flex-col m-auto">
+        <h1 tw="text-center" style={{ color: fg }}>
+          <span tw="block text-4xl mb-3">Hi, I'm Amr</span>
+          <SwitchingTextComponent strings={strings} duration={10} />
+        </h1>
+
+        <div tw="mt-3 mx-auto text-center text-gray-100">
+          <Link tw="block underline" style={{ color: primary }}
+                to="/resume/">Resume</Link>
+          <Link tw="block underline" style={{ color: primary }}
+                to="/skills/">Skills</Link>
+          <Link tw="block underline" style={{ color: primary }}
+                to="/resume/">Projects</Link>
+        </div>
       </div>
-    </div>
-  </Wrapper>
-)
+    </Wrapper>
+  )
+}
 
-export default IndexPage
+export default () => <Layout title="home"><IndexPage /></Layout>
