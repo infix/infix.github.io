@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ThemeProvider } from "emotion-theming"
 import SEO from "./seo"
 
@@ -39,11 +39,8 @@ function isTheme(str: string): str is Theme {
 type Props = { title: string }
 
 export const Layout: React.FC<Props> = ({ children, title }) => {
-  const themeStr = localStorage.getItem("theme") || ""
-  const currentTheme: Theme = isTheme(themeStr) ? themeStr : "dark"
-
-  const [theme, setTheme] = useState<CustomTheme>(themes[currentTheme])
-  const [themeName, setThemeName] = useState<Theme>(currentTheme)
+  const [themeName, setThemeName] = useState<Theme>("dark")
+  const [theme, setTheme] = useState<CustomTheme>(themes[themeName])
 
   const handleSetTheme = (str: string) => {
     const themeStr = isTheme(str) ? str : "dark"
@@ -51,6 +48,13 @@ export const Layout: React.FC<Props> = ({ children, title }) => {
     localStorage.setItem("theme", themeStr)
     setTheme(themes[themeStr])
   }
+
+  useEffect(() => {
+    const themeStr = localStorage.getItem("theme") || ""
+    const currentTheme: Theme = isTheme(themeStr) ? themeStr : "dark"
+
+    handleSetTheme(currentTheme)
+  }, [])
 
   const providedTheme: AppTheme = { theme, setTheme: handleSetTheme, themes, themeName }
 
