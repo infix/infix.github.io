@@ -6,17 +6,8 @@
   display: none !important;
 }
 
-.CodeMirror-foldgutter-open,
-.CodeMirror-foldgutter-folded {
-  display: none !important;
-}
-
 .doc-explorer-title-bar {
   height: 100% !important;
-}
-
-.search-box-icon {
-  margin-left: 5px;
 }
 
 :root {
